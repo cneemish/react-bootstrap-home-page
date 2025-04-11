@@ -1,9 +1,10 @@
 import './App.css';
 import { Alert, Breadcrumb, Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { use, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
+
 
  /*  const block = useState("Yellow")[0];
   const setBlock = useState("Yellow")[1];
@@ -39,6 +40,31 @@ function App() {
     bikeColor: "KTM Organe",
     bikeYear: "2025"
   });
+
+  const bikeChange = ()=>{
+    setBike((prev)=>{
+      return{...prev, bikeBrand: "BMW", bikeModel:"450 GS twin", bikeColor:"blue", bikeYear: 2026}
+    })
+   
+  }
+  const [count, setCount] = useState(0);
+
+  const increaseNumber =()=>{
+     setCount(prev=>prev + 1);
+     setCount(prev=>prev + 1);
+
+     
+  }
+
+  const [countNew, setNewCount] = useState(0);
+  useEffect(()=>{
+    setTimeout(()=>{
+      setNewCount(countNew => countNew+1);
+    },2000)
+  },[countNew, bike])
+
+  
+
     /* let color = "Red";
     const changeColor = ()=>{
       color = "Yellow";
@@ -69,7 +95,9 @@ function App() {
       <Card className='mb-3' style={{color:'GrayText'}}>
         {/* <Card.Img src='https://picsum.photos/500'/> */}
         <Card.Body>
-          <Card.Title>This is test  </Card.Title>
+          <Card.Title>Count:{count} </Card.Title>
+          <Button onClick={increaseNumber}>Increment</Button>
+          <Card.Text>I'm using useEffect {countNew} times</Card.Text>
           <Card.Text>This is test for number{number}</Card.Text>
           <Card.Text> My car brand is {carbrand}</Card.Text>
           <Card.Text>It is {carbrand} {carModel}</Card.Text>
@@ -79,6 +107,8 @@ function App() {
           <Card.Text>The model is {bike.bikeBrand} {bike.bikeModel} color of the bike is {bike.bikeColor} delivery starts from {bike.bikeYear}</Card.Text>
         </Card.Body>
       </Card>
+    
+      <Button onClick={bikeChange} variant='danger'>Bike Change</Button>
       {/* <div>
       <Breadcrumb className='mb-3' style={ {colorAdjust :'unset', margin: 20}}>
         <Breadcrumb.Item>One</Breadcrumb.Item>
